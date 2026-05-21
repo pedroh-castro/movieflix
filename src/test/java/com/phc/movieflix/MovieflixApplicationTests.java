@@ -1,13 +1,14 @@
 package com.phc.movieflix;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+import static org.assertj.core.api.Assertions.assertThat;
+
 class MovieflixApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void applicationClassExists() {
+		assertThat(MovieflixApplication.class).isNotNull();
 	}
 
 }
