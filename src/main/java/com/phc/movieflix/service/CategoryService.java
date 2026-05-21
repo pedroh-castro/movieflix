@@ -1,6 +1,7 @@
 package com.phc.movieflix.service;
 
 import com.phc.movieflix.dtos.request.CategoryRequest;
+import com.phc.movieflix.dtos.request.CategoryRequestUpdate;
 import com.phc.movieflix.dtos.response.CategoryResponse;
 import com.phc.movieflix.entity.Category;
 import com.phc.movieflix.exceptions.ResourceNotFoundException;
@@ -46,6 +47,20 @@ public class CategoryService {
 
     @Transactional
     public void deleteCategoryById(Long id) {
-        categoryRepository.deleteById(id);
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+
+        categoryRepository.delete(category);
+    }
+
+    @Transactional
+    public CategoryResponse updateCategory(Long id, CategoryRequestUpdate request) {
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+
+        categoryMapper.updateEntityFromRequest(request, category);
+        categoryRepository.save(category);
+
+        return categoryMapper.toResponse(category);
     }
 }
