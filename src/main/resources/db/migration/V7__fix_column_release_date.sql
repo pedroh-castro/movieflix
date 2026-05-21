@@ -1,0 +1,1 @@
+ALTER TABLE tb_movie RENAME COLUMN realease_date TO release_date;

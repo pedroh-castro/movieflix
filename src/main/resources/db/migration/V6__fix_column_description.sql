@@ -1,0 +1,1 @@
+ALTER TABLE tb_movie RENAME COLUMN descritpion TO description;
