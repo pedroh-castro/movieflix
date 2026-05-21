@@ -1,4 +1,13 @@
 package com.phc.movieflix.dtos.response;
 
-public record CategoryResponse(Long id, String name) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Categoria cadastrada.")
+public record CategoryResponse(
+        @Schema(description = "Identificador da categoria.", example = "1")
+        Long id,
+
+        @Schema(description = "Nome da categoria.", example = "Ação")
+        String name
+) {
 }
